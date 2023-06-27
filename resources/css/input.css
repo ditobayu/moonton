@@ -1,0 +1,12 @@
+.input-error {
+    @apply ring ring-red-600;
+}
+
+.input-primary {
+    @apply focus:bg-slate-900 bg-slate-900  focus:outline-orange-500 focus:outline-none;
+}
+
+.inpurt-primary-outline {
+    @apply bg-white focus:bg-white border-orange-500 focus:border-orange-500;
+    /* @apply file:bg-orange-500 file:text-white file: rounded-md file:p-2; */
+}
