@@ -2,14 +2,14 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 
-const Authenticated = ({ children }) => {
+const Authenticated = ({ user, children }) => {
     return (
         <>
             <div className="mx-auto max-w-screen hidden lg:block">
                 <Sidebar />
                 <div className="ml-[300px] px-[50px]">
                     <div className="py-10 flex flex-col gap-[50px]">
-                        <Topbar />
+                        <Topbar name={user.name} />
                         <main>{children}</main>
                     </div>
                 </div>
