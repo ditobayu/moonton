@@ -26,7 +26,7 @@ const MovieCard = ({ slug, name, category, thumbnail }) => {
             </div>
             <Link
                 className="inset-0 absolute z-50"
-                href={route("prototype.movie.show", slug)}
+                href={route("user.dashboard.movie.show", slug)}
             ></Link>
         </div>
     );
