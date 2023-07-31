@@ -11,7 +11,7 @@ const Button = ({
     return (
         <button
             type={type}
-            className={`rounded-2xl w-full py-[13px] text-center ${
+            className={`rounded-2xl px-4 py-[13px] text-center ${
                 processing && "opacity-30"
             } btn-${variant} ${className}`}
             disabled={processing}
