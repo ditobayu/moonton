@@ -47,6 +47,9 @@ Route::prefix('prototype')->name('prototype.')->group(function () {
     })->name('movie.show');
 });
 
+//MIDTRANS
+Route::post('midtrans/notification', [SubscriptionPlanController::class, 'midtransCallback']);
+
 Route::redirect('/', '/login');
 
 Route::get('/dashboard', function () {
