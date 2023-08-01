@@ -4,14 +4,36 @@ import { Head } from "@inertiajs/react";
 import React from "react";
 import { router } from "@inertiajs/react";
 
-const SubscriptionPlan = ({ auth, subscriptionPlans }) => {
+const SubscriptionPlan = ({ auth, subscriptionPlans, env }) => {
     const selectSubscription = (id) => {
         router.post(
             route("user.dashboard.subscriptionPlan.userSubscribe", {
                 subscriptionPlan: id,
-            })
+            }),
+            {},
+            {
+                only: ["userSubscription"],
+                onSuccess: ({ props }) => {
+                    onSnapMidtrans(props.userSubscription);
+                },
+            }
         );
     };
+
+    const onSnapMidtrans = (userSubscription) => {
+        snap.pay(userSubscription.snap_token, {
+            onSuccess: function (result) {
+                router.visit(route("user.dashboard.index"));
+            },
+            onPending: function (result) {
+                console.log(result);
+            },
+            onError: function (result) {
+                console.log(result);
+            },
+        });
+    };
+
     return (
         <>
             <Authenticated auth={auth}>
@@ -21,6 +43,10 @@ const SubscriptionPlan = ({ auth, subscriptionPlans }) => {
                         href="https://unpkg.com/flickity@2/dist/flickity.min.css"
                     />
                     <title>SubscriptionPlan</title>
+                    <script
+                        src="https://app.sandbox.midtrans.com/snap/snap.js"
+                        data-client-key={env.MIDTRANS_CLIENTKEY}
+                    ></script>
                 </Head>
 
                 <div className="py-20 flex flex-col items-center">
